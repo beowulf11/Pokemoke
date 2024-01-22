@@ -1,0 +1,26 @@
+import React from 'react';
+import { ColorSchemeScript } from '@mantine/core';
+import { ClientProviders } from '@/lib/ClientProviders';
+
+export const metadata = {
+  title: 'Pokemoke',
+  description: 'Pokedex showcase website',
+};
+
+export default function RootLayout({ children }: { children: any }) {
+  return (
+    <html lang="en">
+      <head>
+        <ColorSchemeScript />
+        <link rel="shortcut icon" href="/favicon.svg" />
+        <meta
+          name="viewport"
+          content="minimum-scale=1, initial-scale=1, width=device-width, user-scalable=no"
+        />
+      </head>
+      <body>
+        <ClientProviders>{children}</ClientProviders>
+      </body>
+    </html>
+  );
+}

@@ -1,0 +1,57 @@
+.container {
+    margin-bottom: 20px;
+
+    gap: 10px;
+    flex-wrap: wrap;
+    flex-direction: row;
+
+    @mixin smaller-than $mantine-breakpoint-md {
+        flex-direction: column-reverse;
+    }
+}
+
+.filterContainer {
+    gap: 10px;
+    flex-grow: 2;
+    flex-wrap: wrap;
+}
+
+.searchInput .typeInput {
+    @mixin smaller-than $mantine-breakpoint-xs {
+        flex-grow: unset;
+        width: 100%;
+    }
+}
+
+.searchInput {
+    width: 20em;
+
+    @mixin smaller-than $mantine-breakpoint-md {
+        width: unset;
+        flex-grow: 5;
+    }
+}
+
+.typeInput {
+    @mixin smaller-than $mantine-breakpoint-md {
+        flex-grow: 1;
+    }
+}
+
+.selectContainer {
+    display: flex;
+    flex-direction: row;
+    gap: 10px;
+    flex-wrap: wrap;
+    justify-content: space-between;
+
+    @mixin smaller-than $mantine-breakpoint-md {
+        width: 100%;
+    }
+}
+
+.selectField {
+    @mixin smaller-than $mantine-breakpoint-md {
+        flex-grow: 1;
+    }
+}
