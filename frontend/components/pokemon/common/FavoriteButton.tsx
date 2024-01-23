@@ -4,8 +4,12 @@ import { useMutation } from '@apollo/client';
 import { IconHeartFilled, IconBug, IconHeartBroken, IconHeart } from '@tabler/icons-react';
 import { ActionIcon } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
-import { MUTATION_FAVORITE_POKEMON, MUTATION_UN_FAVORITE_POKEMON } from '@/components/pokemon/common/query';
+import {
+  MUTATION_FAVORITE_POKEMON,
+  MUTATION_UN_FAVORITE_POKEMON,
+} from '@/components/pokemon/common/query';
 import { Pokemon } from '@/api/graphql';
+import classes from './FavoriteButton.module.css';
 
 type FavoriteButtonProps = Pick<Pokemon, 'id' | 'name' | 'isFavorite'>;
 
@@ -84,17 +88,23 @@ export function FavoriteButton({ isFavorite, name, id }: FavoriteButtonProps) {
     },
   });
 
-  return (
+  return isFavorite ? (
     <ActionIcon
-      onClick={() => {
-        isFavorite ? unFavoriteMutation({ variables: { id } }) :
-          favoriteMutation({ variables: { id } });
-      }}
+      className={classes.favoriteIcon}
+      onClick={() => unFavoriteMutation({ variables: { id } })}
       variant="transparent"
-      style={{ flexBasis: '20%' }}
       size="xl"
     >
-      {isFavorite ? <IconHeartFilled style={{ color: 'red' }} /> : <IconHeart style={{ color: 'red' }} />}
+      <IconHeartFilled />
+    </ActionIcon>
+  ) : (
+    <ActionIcon
+      className={classes.unFavoriteIcon}
+      onClick={() => favoriteMutation({ variables: { id } })}
+      variant="transparent"
+      size="xl"
+    >
+      <IconHeartFilled />
     </ActionIcon>
   );
 }

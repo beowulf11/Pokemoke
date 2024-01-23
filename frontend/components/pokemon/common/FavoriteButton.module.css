@@ -1,0 +1,25 @@
+@keyframes pulse-favorite {
+    0% {
+        color: var(--mantine-color-gray-5);
+    }
+
+    50% {
+        color: var(--mantine-color-red-5);
+    }
+
+    100% {
+        color: var(--mantine-color-gray-5);
+    }
+}
+
+.unFavoriteIcon {
+    color: var(--mantine-color-gray-5);
+
+    :hover {
+        animation: pulse-favorite 1s ease-in-out infinite;
+    }
+}
+
+.favoriteIcon {
+    color: var(--mantine-color-red-7);
+}
