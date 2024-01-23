@@ -21,13 +21,16 @@ export default function Layout({ children }: { children: any }) {
   });
   const { display, type, tab, search, page, favoritesPage } = query;
 
-  const resetPage = React.useCallback((newParam) => {
-    if (tab === TabType.Favorites) {
-      setQuery({ favoritesPage: 1, ...newParam });
-    } else {
-      setQuery({ page: 1, ...newParam });
-    }
-  }, []);
+  const resetPage = React.useCallback(
+    (newParam) => {
+      if (tab === TabType.Favorites) {
+        setQuery({ favoritesPage: 1, ...newParam });
+      } else {
+        setQuery({ page: 1, ...newParam });
+      }
+    },
+    [tab]
+  );
 
   return (
     <Container fluid className={classes.container}>
@@ -42,7 +45,7 @@ export default function Layout({ children }: { children: any }) {
         }}
         tab={tab}
         setTab={(newTab) => {
-          resetPage({ tab: newTab });
+          setQuery({ tab: newTab });
         }}
         type={type}
         setType={(newType) => {

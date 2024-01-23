@@ -9,6 +9,7 @@ import { DisplayType, TabType } from '@/app/(overview)/types';
 import { QUERY_POKEMON_TYPES } from '@/app/(overview)/query';
 import { Pokemon_TypesQuery } from '@/api/graphql';
 import classes from './header.module.css';
+import { DEFAULT_DISPLAY, DEFAULT_TAB_TYPE } from '@/app/(overview)/constants';
 
 type HeaderProps = {
   search: string | undefined | null;
@@ -60,7 +61,7 @@ export default function Header({
           allowDeselect
           searchable
           nothingFoundMessage="Nothing found..."
-          value={type}
+          value={type || null}
           onChange={setType}
           data={data?.pokemonTypes}
         />
@@ -71,7 +72,7 @@ export default function Header({
           value={tab}
           onChange={setTab}
           size="xs"
-          defaultValue={TabType.All}
+          defaultValue={DEFAULT_TAB_TYPE}
           data={[
             { label: <Text>All</Text>, value: TabType.All },
             {
@@ -89,7 +90,7 @@ export default function Header({
           className={classes.selectField}
           value={display}
           onChange={setDisplay}
-          defaultValue={DisplayType.Grid}
+          defaultValue={DEFAULT_DISPLAY}
           size="xs"
           data={[
             {
