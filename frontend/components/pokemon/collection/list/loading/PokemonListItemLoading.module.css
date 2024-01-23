@@ -1,0 +1,50 @@
+.container {
+    height: 100px;
+    min-width: 230px;
+
+    gap: 0;
+    flex-direction: row;
+
+    border: 1px solid var(--mantine-color-dark-6)
+}
+
+.imageSkeleton {
+    height: 85px;
+    width: 85px;
+    margin: 7px;
+
+    border-radius: 7px;
+}
+
+.infoContainer {
+    padding: 10px;
+
+    justify-content: space-evenly;
+    flex-basis: 100%;
+
+    background: var(--mantine-color-gray-3);
+}
+
+.textContainer {
+    gap: 0;
+    flex-basis: 80%;
+}
+
+.titleSkeleton {
+    height: 20px;
+    width: 100px;
+    margin-bottom: 5px;
+}
+
+.descriptionSkeleton {
+    height: 20px;
+    width: 150px;
+}
+
+.heart {
+    flex-basis: 20%;
+
+    align-self: center;
+
+    color: var(--mantine-color-red-6);
+}

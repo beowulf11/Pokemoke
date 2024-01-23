@@ -1,5 +1,5 @@
 import { SimpleGrid } from '@mantine/core';
-import { PokemonListItemLoading } from '@/components/pokemon/collection/list/PokemonListItemLoading';
+import { PokemonListItemLoading } from '@/components/pokemon/collection/list/loading/PokemonListItemLoading';
 
 export function PokemonListLoading() {
   return (
