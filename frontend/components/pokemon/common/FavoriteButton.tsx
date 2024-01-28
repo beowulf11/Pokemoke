@@ -1,8 +1,8 @@
 'use client';
 
 import { useMutation } from '@apollo/client';
-import { IconHeartFilled, IconBug, IconHeartBroken, IconHeart } from '@tabler/icons-react';
-import { ActionIcon } from '@mantine/core';
+import { IconHeartFilled, IconBug, IconHeartBroken } from '@tabler/icons-react';
+import { ActionIcon, rem } from '@mantine/core';
 import { notifications } from '@mantine/notifications';
 import {
   MUTATION_FAVORITE_POKEMON,
@@ -11,7 +11,9 @@ import {
 import { Pokemon } from '@/api/graphql';
 import classes from './FavoriteButton.module.css';
 
-type FavoriteButtonProps = Pick<Pokemon, 'id' | 'name' | 'isFavorite'>;
+type FavoriteButtonProps = Pick<Pokemon, 'id' | 'name' | 'isFavorite'> & {
+  iconSize?: number;
+};
 
 function favoriteNotification(pokemonName: string, favored: boolean) {
   const action = favored ? 'favored' : 'un favored';
@@ -48,7 +50,7 @@ function errorNotification(pokemonName: string, favored: boolean) {
   });
 }
 
-export function FavoriteButton({ isFavorite, name, id }: FavoriteButtonProps) {
+export function FavoriteButton({ iconSize, isFavorite, name, id }: FavoriteButtonProps) {
   const [favoriteMutation] = useMutation(MUTATION_FAVORITE_POKEMON, {
     update(cache) {
       cache.evict({ fieldName: 'pokemons' });
@@ -88,23 +90,19 @@ export function FavoriteButton({ isFavorite, name, id }: FavoriteButtonProps) {
     },
   });
 
-  return isFavorite ? (
+  return (
     <ActionIcon
       className={classes.favoriteIcon}
-      onClick={() => unFavoriteMutation({ variables: { id } })}
+      data-isFavorite={isFavorite}
+      onClick={() => {
+        isFavorite
+          ? unFavoriteMutation({ variables: { id } })
+          : favoriteMutation({ variables: { id } });
+      }}
       variant="transparent"
-      size="xl"
+      size={iconSize || 'xl'}
     >
-      <IconHeartFilled />
-    </ActionIcon>
-  ) : (
-    <ActionIcon
-      className={classes.unFavoriteIcon}
-      onClick={() => favoriteMutation({ variables: { id } })}
-      variant="transparent"
-      size="xl"
-    >
-      <IconHeartFilled />
+      <IconHeartFilled style={{ width: rem(iconSize), height: rem(iconSize) }} />
     </ActionIcon>
   );
 }

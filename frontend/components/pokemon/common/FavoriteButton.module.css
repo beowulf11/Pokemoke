@@ -12,14 +12,16 @@
     }
 }
 
-.unFavoriteIcon {
-    color: var(--mantine-color-gray-5);
-
-    :hover {
-        animation: pulse-favorite 1s ease-in-out infinite;
-    }
-}
-
 .favoriteIcon {
-    color: var(--mantine-color-red-7);
+    &[data-isFavorite=true] {
+        color: var(--mantine-color-red-7);
+
+    }
+
+    &[data-isFavorite=false] {
+        color: var(--mantine-color-gray-5);
+        :hover {
+            animation: pulse-favorite 3s ease-in-out infinite;
+        }
+    }
 }
