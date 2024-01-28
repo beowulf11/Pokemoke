@@ -68,7 +68,13 @@ const resolvers = {
     number: pokemon => parseInt(pokemon.id, 10),
     image: pokemon => `https://img.pokemondb.net/artwork/${pokemon.name.toLowerCase().replace(/[&\\/\\\\#,+()$~%.'":*?<>{}]/g, '').replace(' ', '-')}.jpg`,
     sound: pokemon => `${BASE_URL}/sounds/${parseInt(pokemon.id, 10)}`,
-    evolutions: pokemon => _.map(pokemon.evolutions || [], ev => ({...ev, id: _.padStart(ev.id, 3, '0')})),
+    evolutions: pokemon => _.map(pokemon.evolutions || [], ev => ({
+      ...ev,
+      id: _.padStart(ev.id, 3, '0'),
+      types: _.map(pokemon.types, t => t.toLowerCase()),
+      isFavorite: !!favorites.get(ev.id),
+      image: `https://img.pokemondb.net/artwork/${ev.name.toLowerCase().replace(/[&\\/\\\\#,+()$~%.'":*?<>{}]/g, '').replace(' ', '-')}.jpg`,
+    })),
     isFavorite: pokemon => !!favorites.get(pokemon.id)
   },
   PokemonAttack: {

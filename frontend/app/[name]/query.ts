@@ -35,6 +35,8 @@ export const QUERY_POKEMON_DETAIL = gql`
       evolutions {
         id
         name
+        image
+        types
         isFavorite
       }
       evolutionRequirements {
