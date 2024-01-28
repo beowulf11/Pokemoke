@@ -2,6 +2,7 @@
 
 import '@mantine/core/styles.css';
 import '@mantine/notifications/styles.css';
+import '@mantine/carousel/styles.css';
 import { ApolloLink, HttpLink } from '@apollo/client';
 import {
   ApolloNextAppProvider,
