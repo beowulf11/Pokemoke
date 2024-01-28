@@ -11,6 +11,6 @@ module.exports = {
     rules: {
         'react/react-in-jsx-scope': 'off',
         'import/extensions': 'off',
-        "no-use-before-define": ["error", {"functions": false, "classes": false}]
+        "@typescript-eslint/no-use-before-define": "off",
     },
 };
